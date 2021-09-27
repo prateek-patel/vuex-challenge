@@ -25,12 +25,32 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   computed: {
     cartQuantity() {
       return this.$store.getters['cart/quantity']; // getters['namespace/getter_name']
-    }
-  }
+    },
+    isLoggedIn() {
+      // return this.$store.getters['isAuthenticated'];
+      return this.$store.getters.isAuthenticated;
+    },
+  },
+  methods: {
+    // we can use mapActions or create methods and call dispatch from them.
+    // if we don't want to use mapActions then uncomment method #login and #logout and comment #mapActions()
+    ...mapActions([
+      'login',
+      'logout'
+    ]),
+    // login() {
+    //   this.$store.dispatch('login');
+    // },
+    // logout() {
+    //   this.$store.dispatch('logout');
+    // },
+  },
 };
 </script>
 
